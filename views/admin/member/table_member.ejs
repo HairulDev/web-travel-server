@@ -12,20 +12,17 @@
           <tr>
             <th>No</th>
             <th>Name Bank</th>
-            <th>Nomor Rekening</th>
             <th>Name</th>
-            <th>Image</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <% for(let i = 0; i < bank.length; i++){ %>
+          <% for(let i = 0; i < member.length; i++){ %>
           <tr>
             <td><%= i + 1 %></td>
-            <td><%= bank[i].nameBank %></td>
-            <td><%= bank[i].nomorRekening %></td>
-            <td><%= bank[i].name %></td>
-            <td>
+            <td><%= member[i].firstName %></td>
+            <td><%= member[i].lastName %></td>
+            <!-- <td>
               <img src="http://127.0.0.1:4000/<%= bank[i].imageUrl %>" alt="imageUrl" width="70px">
             </td>
             <td>
@@ -36,7 +33,7 @@
                     class=" fas fa-edit"></i></a>
                 <button type="submit" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></button>
               </form>
-            </td>
+            </td> -->
           </tr>
           <% } %>
         </tbody>

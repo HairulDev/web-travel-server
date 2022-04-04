@@ -9,7 +9,7 @@ const Member = require('../models/Member');
 const Users = require('../models/Users');
 const fs = require('fs-extra');
 const path = require('path');
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
 module.exports = {
   viewSignin: async (req, res) => {
@@ -45,19 +45,18 @@ module.exports = {
         req.flash('alertStatus', 'danger');
         res.redirect('/admin/signin');
       }
-
       req.session.user = {
         id: user.id,
         username: user.username
       }
 
+      // res.status(201).json({ message: "Success Login"});
       res.redirect('/admin/dashboard');
 
     } catch (error) {
-      res.redirect('/admin/signin');
+      res.redirect('/admin/dashboard');
     }
   },
-
   actionLogout: (req, res) => {
     req.session.destroy();
     res.redirect('/admin/signin');
@@ -77,6 +76,23 @@ module.exports = {
       });
     } catch (error) {
       res.redirect('/admin/dashboard');
+    }
+  },
+
+  viewMember: async (req, res) => {
+    try {
+      const member = await Member.find();
+      const alertMessage = req.flash('alertMessage');
+      const alertStatus = req.flash('alertStatus');
+      const alert = { message: alertMessage, status: alertStatus };
+      res.render('admin/member/view_member', {
+        member,
+        alert,
+        title: "Staycation | member",
+        user: req.session.user
+      });
+    } catch (error) {
+      res.redirect('/admin/member');
     }
   },
 
@@ -100,7 +116,6 @@ module.exports = {
   addCategory: async (req, res) => {
     try {
       const { name } = req.body;
-      // console.log(name);
       await Category.create({ name });
       req.flash('alertMessage', 'Success Add Category');
       req.flash('alertStatus', 'success');
