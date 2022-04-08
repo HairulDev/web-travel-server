@@ -10,7 +10,6 @@ var cors = require('cors')
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://hairul:lHVFJ73JzF5wsq0h@cluster0.2tx2g.mongodb.net/db_travel?retryWrites=true&w=majority', {
-// mongoose.connect('mongodb://127.0.0.1:27017/db_staycation', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
