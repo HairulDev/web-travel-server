@@ -9,7 +9,7 @@ const Member = require('../models/Member');
 const Users = require('../models/Users');
 const fs = require('fs-extra');
 const path = require('path');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs')
 
 module.exports = {
   viewSignin: async (req, res) => {
@@ -47,16 +47,16 @@ module.exports = {
       }
       req.session.user = {
         id: user.id,
-        username: user.username
+        username: user.username,
+        imageUrl: user.imageUrl
       }
-
-      // res.status(201).json({ message: "Success Login"});
       res.redirect('/admin/dashboard');
 
     } catch (error) {
-      res.redirect('/admin/dashboard');
+      res.redirect('/admin/signin');
     }
   },
+
   actionLogout: (req, res) => {
     req.session.destroy();
     res.redirect('/admin/signin');
@@ -76,23 +76,6 @@ module.exports = {
       });
     } catch (error) {
       res.redirect('/admin/dashboard');
-    }
-  },
-
-  viewMember: async (req, res) => {
-    try {
-      const member = await Member.find();
-      const alertMessage = req.flash('alertMessage');
-      const alertStatus = req.flash('alertStatus');
-      const alert = { message: alertMessage, status: alertStatus };
-      res.render('admin/member/view_member', {
-        member,
-        alert,
-        title: "Staycation | member",
-        user: req.session.user
-      });
-    } catch (error) {
-      res.redirect('/admin/member');
     }
   },
 
@@ -116,6 +99,7 @@ module.exports = {
   addCategory: async (req, res) => {
     try {
       const { name } = req.body;
+      // console.log(name);
       await Category.create({ name });
       req.flash('alertMessage', 'Success Add Category');
       req.flash('alertStatus', 'success');
@@ -158,6 +142,24 @@ module.exports = {
     }
   },
 
+  addAccount: async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      console.log(username)
+      await Users.create({
+        username,
+        password,
+        imageUrl: `images/${req.file.filename}`
+      });
+      req.flash('alertMessage', 'Success Add Account');
+      req.flash('alertStatus', 'success');
+      res.redirect('/admin/account');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/account');
+    }
+  },
   viewBank: async (req, res) => {
     try {
       const bank = await Bank.find();
@@ -174,6 +176,49 @@ module.exports = {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
       res.redirect('/admin/bank')
+    }
+  },
+  viewAccount: async (req, res) => {
+    try {
+      const account = await Users.find();
+      const alertMessage = req.flash('alertMessage');
+      const alertStatus = req.flash('alertStatus');
+      const alert = { message: alertMessage, status: alertStatus };
+      res.render('admin/account/view_account', {
+        title: "Staycation | Account",
+        alert,
+        account,
+        user: req.session.user
+      });
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/account')
+    }
+  },
+  editAccount: async (req, res) => {
+    try {
+      const { id, username } = req.body;
+      const account = await Users.findOne({ _id: id });
+      if (req.file == undefined) {
+        account.username = username;
+        await account.save();
+        req.flash('alertMessage', 'Success Update Account');
+        req.flash('alertStatus', 'success');
+        res.redirect('/admin/account');
+      } else {
+        await fs.unlink(path.join(`public/${account.imageUrl}`));
+        account.username = username;
+        account.imageUrl = `images/${req.file.filename}`
+        await account.save();
+        req.flash('alertMessage', 'Success Update Account');
+        req.flash('alertStatus', 'success');
+        res.redirect('/admin/account');
+      }
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/account');
     }
   },
 
@@ -193,6 +238,22 @@ module.exports = {
       req.flash('alertMessage', `${error.message}`);
       req.flash('alertStatus', 'danger');
       res.redirect('/admin/bank');
+    }
+  },
+
+  deleteAccount: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const account = await Users.findOne({ _id: id });
+      await fs.unlink(path.join(`public/${account.imageUrl}`));
+      await account.remove();
+      req.flash('alertMessage', 'Success Delete Account');
+      req.flash('alertStatus', 'success');
+      res.redirect('/admin/account');
+    } catch (error) {
+      req.flash('alertMessage', `${error.message}`);
+      req.flash('alertStatus', 'danger');
+      res.redirect('/admin/account');
     }
   },
 

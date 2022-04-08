@@ -10,6 +10,9 @@ const usersSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  imageUrl: {
+    type: String
+  }
 })
 
 usersSchema.pre('save', async function (next) {

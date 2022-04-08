@@ -37,8 +37,6 @@
           <%- include('show_activity.ejs') %>
         </div>
 
-
-
       </div>
       <!-- /.container-fluid -->
 
@@ -84,12 +82,11 @@
   $(document).ready(function () {
     $('#dataTableActivity').DataTable();
   })
-  CKEDITOR.replace('about');
   $('#dataTableActivity').on('click', '.button-update', function () {
     let id = $(this).data('id');
     let name = $(this).data('name');
     let type = $(this).data('type');
-    $('#edit-modal').modal('show');
+    $('#edit-modalActivity').modal('show');
     $('.id').val(id);
     $('.name').val(name);
     $('.type').val(type);
@@ -104,4 +101,5 @@
     $('.name').val(name);
     $('.qty').val(qty);
   })
+  CKEDITOR.replace('about');
 </script>
