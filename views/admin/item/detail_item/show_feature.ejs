@@ -36,26 +36,28 @@
               </thead>
 
               <tbody>
-                <% for(let i = 0; i < feature.length; i++){ %>
+                <% 
+                let i = 1;
+                feature.map(e => { %>
                 <tr>
-                  <td><%= i + 1 %></td>
-                  <td><%= feature[i].name %></td>
-                  <td><%= feature[i].qty %></td>
+                  <td><%= i++ %></td>
+                  <td><%= e.name %></td>
+                  <td><%= e.qty %></td>
                   <td>
-                    <img src="http://localhost:4000/<%= feature[i].imageUrl %>" alt="imageUrl"
+                    <img src="http://localhost:4000/<%= e.imageUrl %>" alt="imageUrl"
                       width="70px">
                   </td>
                   <td>
-                    <form action="/admin/item/<%= itemId %>/feature/<%= feature[i].id %>?_method=DELETE" method="POST">
+                    <form action="/admin/item/<%= itemId %>/feature/<%= e.id %>?_method=DELETE" method="POST">
                       <a href="javascript:void();" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                        data-id="<%= feature[i].id %>" data-name="<%= feature[i].name %>"
-                        data-qty="<%= feature[i].qty %>"><i class=" fas fa-edit"></i></a>
+                        data-id="<%= e.id %>" data-name="<%= e.name %>"
+                        data-qty="<%= e.qty %>"><i class=" fas fa-edit"></i></a>
                       <button type="submit" class="btn btn-danger btn-circle btn-sm"><i
                           class="fas fa-trash"></i></button>
                     </form>
                   </td>
                 </tr>
-                <% } %>
+                <% }) %>
               </tbody>
 
             </table>

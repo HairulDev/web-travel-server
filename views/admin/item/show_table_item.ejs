@@ -15,26 +15,28 @@
             </tr>
           </thead>
           <tbody>
-            <% for(let i = 0; i < item.length; i++){ %>
+            <% 
+            let i =1;
+            item.map(e => { %>
             <tr>
-              <td><%= i + 1 %></td>
-              <td><%= item[i].title %></td>
-              <td>$ <%= item[i].price %></td>
-              <td><%= item[i].country %></td>
-              <td><%= item[i].city %></td>
+              <td><%= i++ %></td>
+              <td><%= e.title %></td>
+              <td>$ <%= e.price %></td>
+              <td><%= e.country %></td>
+              <td><%= e.city %></td>
               <td>
-                <form action="/admin/item/<%= item[i].id %>/delete?_method=DELETE" method="POST">
-                  <a href="/admin/item/show-image/<%= item[i].id %>" class="btn btn-info btn-circle btn-sm"><i
+                <form action="/admin/item/<%= e.id %>/delete?_method=DELETE" method="POST">
+                  <a href="/admin/item/show-image/<%= e.id %>" class="btn btn-info btn-circle btn-sm"><i
                       class="fas fa-image"></i></a>
-                  <a href="/admin/item/<%= item[i].id %>" class="btn btn-warning btn-circle btn-sm "><i
+                  <a href="/admin/item/<%= e.id %>" class="btn btn-warning btn-circle btn-sm "><i
                       class="fas fa-edit"></i></a>
                   <button type="submit" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></button>
-                  <a href="/admin/item/show-detail-item/<%= item[i].id %>" class="btn btn-success btn-circle btn-sm"><i
+                  <a href="/admin/item/show-detail-item/<%= e.id %>" class="btn btn-success btn-circle btn-sm"><i
                       class="fas fa-plus"></i></a>
                 </form>
               </td>
             </tr>
-            <% } %>
+            <% }) %>
           </tbody>
         </table>
       </div>

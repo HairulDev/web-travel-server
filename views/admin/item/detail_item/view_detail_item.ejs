@@ -83,9 +83,9 @@
     $('#dataTableActivity').DataTable();
   })
   $('#dataTableActivity').on('click', '.button-update', function () {
-    let id = $(this).data('id');
-    let name = $(this).data('name');
-    let type = $(this).data('type');
+    let id    = $(this).data('id');
+    let name  = $(this).data('name');
+    let type  = $(this).data('type');
     $('#edit-modalActivity').modal('show');
     $('.id').val(id);
     $('.name').val(name);
@@ -93,9 +93,9 @@
   })
 
   $('#dataTable').on('click', '.button-update', function () {
-    let id = $(this).data('id');
-    let name = $(this).data('name');
-    let qty = $(this).data('qty');
+    let id    = $(this).data('id');
+    let name  = $(this).data('name');
+    let qty   = $(this).data('qty');
     $('#edit-modal').modal('show');
     $('.id').val(id);
     $('.name').val(name);

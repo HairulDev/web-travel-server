@@ -35,27 +35,29 @@
                 </tr>
               </thead>
               <tbody>
-                <% for(let i = 0; i < activity.length; i++){ %>
+                <% 
+                let i=1;
+                activity.map(e => { %>
                 <tr>
-                  <td><%= i + 1 %></td>
-                  <td><%= activity[i].name %></td>
-                  <td><%= activity[i].type %></td>
+                  <td><%= i++ %></td>
+                  <td><%= e.name %></td>
+                  <td><%= e.type %></td>
                   <td>
-                    <img src="http://localhost:4000/<%= activity[i].imageUrl %>" alt="imageUrl"
+                    <img src="http://localhost:4000/<%= e.imageUrl %>" alt="imageUrl"
                       width="70px">
                   </td>
                   <td>
-                    <form action="/admin/item/<%= itemId %>/activity/<%= activity[i].id %>?_method=DELETE"
+                    <form action="/admin/item/<%= itemId %>/activity/<%= e.id %>?_method=DELETE"
                       method="POST">
                       <a href="javascript:void();" type="button" class="btn btn-warning btn-circle btn-sm button-update"
-                        data-id="<%= activity[i].id %>" data-name="<%= activity[i].name %>"
-                        data-type="<%= activity[i].type %>"><i class=" fas fa-edit"></i></a>
+                        data-id="<%= e.id %>" data-name="<%= e.name %>"
+                        data-type="<%= e.type %>"><i class=" fas fa-edit"></i></a>
                       <button type="submit" class="btn btn-danger btn-circle btn-sm"><i
                           class="fas fa-trash"></i></button>
                     </form>
                   </td>
                 </tr>
-                <% } %>
+                <% }) %>
               </tbody>
             </table>
           </div>

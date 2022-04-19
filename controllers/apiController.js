@@ -51,8 +51,8 @@ module.exports = {
         name: "Happy Family",
         rate: 4.55,
         content: "What a great trip with my family and I should try again next time soon ...",
-        familyName: "Angga",
-        familyOccupation: "Product Designer"
+        familyName: "Cool",
+        familyOccupation: "Manager Financial"
       }
 
       res.status(200).json({
@@ -66,7 +66,6 @@ module.exports = {
         testimonial
       })
     } catch (error) {
-      console.log(error);
       res.status(500).json({ message: "Internal server error" });
     }
   },
@@ -120,8 +119,6 @@ module.exports = {
     if (!req.file) {
       return res.status(404).json({ message: "Image not found" });
     }
-
-    console.log(idItem)
 
     if (
       idItem === undefined ||
