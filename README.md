@@ -1,3 +1,7 @@
+<h1>LOGIN</h1>
+https://sambasvacation.netlify.app
+
+
 <h2 align="center">Kelas Online Premium</h2>
 
 <h1 align="center">Membuat Website Mencari Kosan/Hotel/Apartment dengan MERN Stack</h1>
@@ -208,9 +212,9 @@ Tools (semua gratis dan siapa saja bisa belajar):
 			
 
 # Website Deployment (VPS)
-* Persiapan Tools VIDEO SELESAI DIBUAT 
-* Create akun heroku VIDEO SELESAI DIBUAT 
-* Membuat repository github VIDEO SELESAI DIBUAT 
-* Membuat akun mongodb atlas VIDEO SELESAI DIBUAT 
-* Deploy ke Heroku dan Automated Deploy (Back-End) VIDEO SELESAI DIBUAT 
+* Persiapan Tools  
+* Create akun heroku 
+* Membuat repository github
+* Membuat akun mongodb atlas
+* Deploy ke Heroku dan Automated Deploy (Back-End) 
 
