@@ -1,0 +1,5 @@
+npm install -g express-generator
+express --view=ejs myapp
+cd myapp
+npm install
+npm start

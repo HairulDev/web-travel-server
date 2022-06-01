@@ -10,10 +10,7 @@ var cors = require('cors')
 // import mongoose
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://hairul:lHVFJ73JzF5wsq0h@cluster0.2tx2g.mongodb.net/db-travel?retryWrites=true&w=majority', {
-<<<<<<< HEAD
-// mongoose.connect('mongodb://127.0.0.1:27017/db_staycation', {
-=======
->>>>>>> 975e509b187130f52292669fad9ae63c09ae85fc
+  // mongoose.connect('mongodb://127.0.0.1:27017/db_staycation', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -22,6 +19,7 @@ mongoose.connect('mongodb+srv://hairul:lHVFJ73JzF5wsq0h@cluster0.2tx2g.mongodb.n
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var userRouter = require ("./routes/user.js");
 
 
 // router admin
@@ -62,6 +60,7 @@ app.use(cors());
 
 app.use('/admin', adminRouter);
 app.use('/api/v1/member', apiRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
