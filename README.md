@@ -1,5 +1,9 @@
-<h1>LOGIN</h1>
-https://sambasvacation.netlify.app
+<h1>LOGIN Sambas Vacation </h1>
+Backend: https://sambas-vacation.herokuapp.com
+Username: admin
+Pass: rahasia
+
+Frontend: https://sambasvacation.netlify.app
 
 
 <h2 align="center">Kelas Online Premium</h2>
